@@ -126,20 +126,46 @@ void __stdcall hooks::scene_end::hook()
 			continue;
 
 		static i_material* mat_test = nullptr;
-		auto mat = interfaces::material_system->find_material("debug/debugambientcube", TEXTURE_GROUP_MODEL, true, nullptr);
-		mat->increment_reference_count(); // i forgot this and became gey
-		mat_test = mat;
-		float chams[4] = {variables::visual_chams_red, variables::visual_chams_green, variables::visual_chams_blue, 255.f};
+		static i_material* mat_glow = nullptr;
+		auto materialTextured = interfaces::material_system->find_material("debug/debugambientcube", TEXTURE_GROUP_MODEL, true, nullptr);
+		auto materialGlow = interfaces::material_system->find_material("dev/glow_armsrace", TEXTURE_GROUP_OTHER, true, nullptr);
+		materialTextured->increment_reference_count(); // i forgot this and became gey
+		mat_test = materialTextured;
+		mat_glow = materialGlow;
+		float chams[4] = {variables::visual_chams_red / 255.f, variables::visual_chams_green / 255.f, variables::visual_chams_blue / 255.f, 255.f / 255.f};
 
 		if (variables::visual_chams && e->team() != p->team())
 		{
 			interfaces::render_view->modulate_color(chams);
 			interfaces::render_view->set_blend(1.f);
-			mat_test->set_material_var_flag(material_var_ignorez, true);
+			if (variables::visual_chamsIgnoreZ)
+			{
+				mat_test->set_material_var_flag(material_var_ignorez, true);
+			}
+			else {
+				mat_test->set_material_var_flag(material_var_ignorez, false);
+			}
 
 			interfaces::model_render->override_material(mat_test);
 			e->draw_model(1, 255);
 		}
+
+		if (variables::visual_chamsGlow && e->team() != p->team())
+		{
+			interfaces::render_view->modulate_color(chams);
+			interfaces::render_view->set_blend(0.9f);
+			if (variables::visual_chamsIgnoreZ)
+			{
+				mat_test->set_material_var_flag(material_var_ignorez, true);
+			}
+			else {
+				mat_test->set_material_var_flag(material_var_ignorez, false);
+			}
+
+			interfaces::model_render->override_material(mat_glow);
+			e->draw_model(1, 255);
+		}
+
 		interfaces::model_render->override_material(nullptr);
 	}
 
