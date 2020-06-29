@@ -7,10 +7,12 @@
 hooks::create_move::fn create_move_original = nullptr;
 hooks::paint_traverse::fn paint_traverse_original = nullptr;
 hooks::scene_end::fn scene_end_original = nullptr;
+hooks::frame_stage::fn frame_stage_original = nullptr;
 bool hooks::initialize() {
 	auto create_move_target = reinterpret_cast<void*>(get_virtual(interfaces::clientmode, 24));
 	auto paint_traverse_target = reinterpret_cast<void*>(get_virtual(interfaces::panel, 41));
 	auto scene_end_target = reinterpret_cast<void*>(get_virtual(interfaces::render_view, 9));
+	auto frame_stage_target = reinterpret_cast<void*>(get_virtual(interfaces::client, 37));
 
 	if (MH_Initialize() != MH_OK) {
 		throw std::runtime_error("failed to initialize MH_Initialize.");
@@ -28,7 +30,12 @@ bool hooks::initialize() {
 	}
 
 	if (MH_CreateHook(scene_end_target, &scene_end::hook, reinterpret_cast<void**>(&scene_end_original)) != MH_OK) {
-		throw std::runtime_error("scene_end failed");
+		throw std::runtime_error("failed to initialize scene_end. (outdated index?)");
+		return false;
+	}
+
+	if (MH_CreateHook(frame_stage_target, &frame_stage::hook, reinterpret_cast<void**>(&frame_stage_original)) != MH_OK) {
+		throw std::runtime_error("failed to initialize frame_stage. (outdated index?)");
 		return false;
 	}
 
@@ -170,4 +177,36 @@ void __stdcall hooks::scene_end::hook()
 	}
 
 	return scene_end_original(interfaces::render_view);
+}
+
+void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
+{
+	if (frame_stage == FRAME_NET_UPDATE_END && interfaces::engine->is_in_game() && interfaces::engine->is_connected())
+	{
+		//auto p = reinterpret_cast<player_t*>(interfaces::entity_list->get_client_entity(interfaces::engine->get_local_player()));
+
+		static bool init = false;
+
+		if (GetKeyState(VK_DELETE))
+		{
+			if (init)
+			{
+				convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
+				sv_cheats->set_value(1);
+				interfaces::engine->execute_cmd("thirdperson");
+			}
+			init = false;
+		}
+		else
+		{
+			if (!init)
+			{
+				convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
+				sv_cheats->set_value(1);
+				interfaces::engine->execute_cmd("firstperson");
+			}
+			init = true;
+		}
+	}
+	frame_stage_original(interfaces::client, frame_stage);
 }

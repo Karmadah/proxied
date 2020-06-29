@@ -11,6 +11,20 @@ void visuals::visual_main()
 	if (variables::visual_spread_crosshair &&interfaces::engine->is_in_game())
 		visuals::visuals_subfunctions::innaccuracy_crosshair();
 
+	if (variables::visual_amb_light_red && interfaces::engine->is_in_game())
+	{
+		interfaces::engine->execute_cmd("sv_cheats 1");
+		interfaces::engine->execute_cmd("mat_ambient_light_r 100");
+	}
+	if (variables::visual_amb_light_green && interfaces::engine->is_in_game()) {
+		interfaces::engine->execute_cmd("sv_cheats 1");
+		interfaces::engine->execute_cmd("mat_ambient_light_g 100");
+	}
+	if (variables::visual_amb_light_blue && interfaces::engine->is_in_game()) {
+		interfaces::engine->execute_cmd("sv_cheats 1");
+		interfaces::engine->execute_cmd("mat_ambient_light_b 100");
+	}
+
 	for (int i = 1; i <= interfaces::entity_list->get_highest_index(); i++)
 	{
 		auto e = reinterpret_cast<player_t*>(interfaces::entity_list->get_client_entity(i));

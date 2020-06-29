@@ -22,6 +22,9 @@ namespace variables {
 	inline bool visual_chamsEnable = false;
 	inline bool visual_chamsIgnoreZ = false;
 	inline bool visual_weapon = false;
+	inline bool visual_amb_light_red = false;
+	inline bool visual_amb_light_green = false;
+	inline bool visual_amb_light_blue = false;
 
 	//misc
 	inline bool bhop_enable = false;

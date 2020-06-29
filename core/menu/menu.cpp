@@ -53,6 +53,14 @@ void menu::render() {
 				}
 			}
 		}
+		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_2_x, variables::menu::y + 275 + variables::menu::group_box_2_y, 550, 230, render::fonts::watermark_font, "World", false); {
+			if (variables::visual_enable)
+			{
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 290, variables::menu::x + 375, render::fonts::watermark_font, "World Color Red", variables::visual_amb_light_red);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 305, variables::menu::x + 375, render::fonts::watermark_font, "World Color Green", variables::visual_amb_light_green);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 320, variables::menu::x + 375, render::fonts::watermark_font, "World Color Blue", variables::visual_amb_light_blue);
+			}
+		}
 		break;
 	case 2:
 		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_1_x, variables::menu::y + 35 + variables::menu::group_box_1_y, 550, 230, render::fonts::watermark_font, "misc", false); {

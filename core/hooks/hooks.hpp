@@ -20,4 +20,9 @@ namespace hooks {
 		using fn = void(__thiscall*)(void*);
 		void __stdcall hook();
 	}
+
+	namespace frame_stage {
+		using fn = void(__thiscall*)(void*, client_frame_stage_t);
+		void __stdcall hook(client_frame_stage_t frame_stage);
+	}
 }

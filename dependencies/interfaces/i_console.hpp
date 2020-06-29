@@ -40,4 +40,4 @@ public:
 	virtual void donsole_dprintf(const char* pFormat, ...) const = 0;
 	virtual void rever_flagged_convars(int nFlag) = 0;
 };
-//extern i_console* csgo_cvar;
+//i_console* csgo_cvar_7;
