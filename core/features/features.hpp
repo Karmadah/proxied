@@ -14,6 +14,7 @@ namespace aimbot {
 	void run_aimbot(c_usercmd* cmd);
 	vec3_t calc_angle(const vec3_t& vecSource, const vec3_t& vecDestination);
 	vec3_t normalize(vec3_t angle);
+	float hitchance();
 };
 
 namespace visuals {

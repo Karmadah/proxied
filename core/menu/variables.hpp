@@ -2,13 +2,15 @@
 
 namespace variables {
 
-	//legit
+	//rage
 	inline bool aim_enable = false;
 	inline float aim_fov = 0.f;
 	inline bool aim_recoil = false;
 	inline bool aim_head = false;
 	inline bool aim_body = false;
 	inline float aim_health_hitbox_override = 0.f;
+	inline float aim_max_misses = 0.f;
+	inline float aim_hitchance = 0.f;
 
 	//visual
 	inline bool visual_enable = false;
@@ -25,12 +27,14 @@ namespace variables {
 	inline bool visual_amb_light_red = false;
 	inline bool visual_amb_light_green = false;
 	inline bool visual_amb_light_blue = false;
+	inline bool visual_grenade_prediction = false;
 
 	//misc
 	inline bool bhop_enable = false;
 	inline bool auto_strafe_enable = false;
 	inline float bhop_max = 0;
 	inline float bhop_hitchance = 100;
+	inline bool misc_thirdperson = false;
 
 	//cfg
 	inline bool watermark_enable = false;

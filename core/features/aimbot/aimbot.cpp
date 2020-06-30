@@ -4,6 +4,7 @@ void aimbot::run_aimbot(c_usercmd* cmd)
 {
 	float closest = FLT_MAX;
 	int hitbox = 0;
+	int missed_shot = 0;
 
 	if (!variables::aim_enable)
 		return;
@@ -32,6 +33,8 @@ void aimbot::run_aimbot(c_usercmd* cmd)
 
 		if (e->health() <= variables::aim_health_hitbox_override)
 			hitbox = 6;
+		if (missed_shot >= variables::aim_max_misses)
+			hitbox = 6;
 
 		vec3_t ed = aimbot::normalize(aimbot::calc_angle(player->get_eye_pos(), e->get_hitbox_position(hitbox)));
 		if ((cmd->viewangles - ed).Length2D() <= closest)
@@ -39,10 +42,41 @@ void aimbot::run_aimbot(c_usercmd* cmd)
 
 		if (!e->dormant() && e->is_alive() && e->is_player() && (cmd->viewangles - ed).Length2D() == closest)
 		{
+			int health = e->health();
 			if (GetAsyncKeyState(VK_LBUTTON) && (cmd->viewangles - ed).Length2D() <= variables::aim_fov)
+			{
 				cmd->viewangles = ed;
+
+				int new_health = e->health();
+				if (!(health > new_health))
+					missed_shot++;
+				else
+					missed_shot = 0;
+			}
 		}
 	}
+}
+
+bool can_shoot()
+{
+	//if (aimbot::hitchance() < variables::aim_hitchance))
+	//return false;
+	// do other logics here for rage lol
+
+	return true;
+}
+
+float aimbot::hitchance()
+{
+	player_t* player = (player_t*)interfaces::entity_list->get_client_entity(interfaces::engine->get_local_player());
+	if (!player) return 0;
+	auto weapon = player->active_weapon();
+	if (!weapon) return 0;
+
+	float inaccuracy = weapon->inaccuracy();
+	if (inaccuracy == 0) inaccuracy = 0.0000001;
+	inaccuracy = 1 / inaccuracy;
+	return inaccuracy;
 }
 
 vec3_t aimbot::calc_angle(const vec3_t& vecSource, const vec3_t& vecDestination)

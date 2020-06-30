@@ -181,18 +181,24 @@ void __stdcall hooks::scene_end::hook()
 
 void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
 {
+	bool sv = false;
+	convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
+	convar* sv_grenade_prediction = interfaces::console->get_convar("sv_grenade_trajectory");
+
 	if (frame_stage == FRAME_NET_UPDATE_END && interfaces::engine->is_in_game() && interfaces::engine->is_connected())
 	{
 		//auto p = reinterpret_cast<player_t*>(interfaces::entity_list->get_client_entity(interfaces::engine->get_local_player()));
+		if (sv == false) {
+			sv_cheats->set_value(1);
+			sv = true;
+		}
 
+		//thirdperson
 		static bool init = false;
-
-		if (GetKeyState(VK_DELETE))
+		if (variables::misc_thirdperson)
 		{
 			if (init)
 			{
-				convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
-				sv_cheats->set_value(1);
 				interfaces::engine->execute_cmd("thirdperson");
 			}
 			init = false;
@@ -201,12 +207,16 @@ void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
 		{
 			if (!init)
 			{
-				convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
-				sv_cheats->set_value(1);
 				interfaces::engine->execute_cmd("firstperson");
 			}
 			init = true;
 		}
+
+		// grenade prediction
+		if (variables::visual_grenade_prediction)
+			sv_grenade_prediction->set_value(1);
+		else
+			sv_grenade_prediction->set_value(0);
 	}
 	frame_stage_original(interfaces::client, frame_stage);
 }

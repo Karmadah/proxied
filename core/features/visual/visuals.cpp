@@ -12,18 +12,17 @@ void visuals::visual_main()
 		visuals::visuals_subfunctions::innaccuracy_crosshair();
 
 	if (variables::visual_amb_light_red && interfaces::engine->is_in_game())
-	{
-		interfaces::engine->execute_cmd("sv_cheats 1");
 		interfaces::engine->execute_cmd("mat_ambient_light_r 100");
-	}
-	if (variables::visual_amb_light_green && interfaces::engine->is_in_game()) {
-		interfaces::engine->execute_cmd("sv_cheats 1");
+	else 
+		interfaces::engine->execute_cmd("mat_ambient_light_r 0");
+	if (variables::visual_amb_light_green && interfaces::engine->is_in_game())
 		interfaces::engine->execute_cmd("mat_ambient_light_g 100");
-	}
-	if (variables::visual_amb_light_blue && interfaces::engine->is_in_game()) {
-		interfaces::engine->execute_cmd("sv_cheats 1");
+	else 
+		interfaces::engine->execute_cmd("mat_ambient_light_g 0");
+	if (variables::visual_amb_light_blue && interfaces::engine->is_in_game())
 		interfaces::engine->execute_cmd("mat_ambient_light_b 100");
-	}
+	else
+		interfaces::engine->execute_cmd("mat_ambient_light_b 0");
 
 	for (int i = 1; i <= interfaces::entity_list->get_highest_index(); i++)
 	{

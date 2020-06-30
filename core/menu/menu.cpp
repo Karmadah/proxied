@@ -28,6 +28,8 @@ void menu::render() {
 			menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 45, variables::menu::x + 375, render::fonts::watermark_font, "Aimbot", variables::aim_enable);
 			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 60, 125, render::fonts::watermark_font, "Field of view", variables::aim_fov, 0.f, 30.f);
 			menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 90, variables::menu::x + 375, render::fonts::watermark_font, "Recoil", variables::aim_recoil);
+			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 130, 125, render::fonts::watermark_font, "Max misses", variables::aim_max_misses, 0.f, 5.f);
+			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 160, 125, render::fonts::watermark_font, "Hitchance", variables::aim_hitchance, 0.f, 100.f);
 		}
 		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_2_x, variables::menu::y + 275 + variables::menu::group_box_2_y, 550, 230, render::fonts::watermark_font, "hitboxes", false); {
 			menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 285, variables::menu::x + 235, render::fonts::watermark_font, "Head", variables::aim_head);
@@ -59,6 +61,7 @@ void menu::render() {
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 290, variables::menu::x + 375, render::fonts::watermark_font, "World Color Red", variables::visual_amb_light_red);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 305, variables::menu::x + 375, render::fonts::watermark_font, "World Color Green", variables::visual_amb_light_green);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 320, variables::menu::x + 375, render::fonts::watermark_font, "World Color Blue", variables::visual_amb_light_blue);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 335, variables::menu::x + 375, render::fonts::watermark_font, "Grenade prediction", variables::visual_grenade_prediction);
 			}
 		}
 		break;
@@ -71,6 +74,10 @@ void menu::render() {
 					menu_framework::slider(variables::menu::x + 120, variables::menu::y + 75, 125, render::fonts::watermark_font, "Auto Jump Max - reset [v]", variables::bhop_max, 0, 5);
 					menu_framework::slider(variables::menu::x + 120, variables::menu::y + 105, 125, render::fonts::watermark_font, "Auto Jump Hitchance", variables::bhop_hitchance, 0, 100);
 				}
+		
+		}
+		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_2_x, variables::menu::y + 275 + variables::menu::group_box_2_y, 550, 230, render::fonts::watermark_font, "Extra", false); {
+			menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 305, variables::menu::x + 375, render::fonts::watermark_font, "Thirdperson", variables::misc_thirdperson);
 		}
 		break;
 	case 3:
