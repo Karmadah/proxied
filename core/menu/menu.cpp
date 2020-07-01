@@ -50,7 +50,7 @@ void menu::render() {
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 135, variables::menu::x + 375, render::fonts::watermark_font, "Enable Chams", variables::visual_chamsEnable);
 				if (variables::visual_chamsEnable) {
 					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 150, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Textured]", variables::visual_chams);
-					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Glow]", variables::visual_chamsGlow);
+					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Glass]", variables::visual_chamsGlass);
 					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 180, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Through Walls]", variables::visual_chamsIgnoreZ);
 				}
 			}
@@ -91,9 +91,9 @@ void menu::render() {
 				menu_framework::slider(variables::menu::x + 120, variables::menu::y + 240, 125, render::fonts::watermark_font, "Group Box 2 Position Y", variables::menu::group_box_2_y, -50.f, 50.f);
 		}
 		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_2_x, variables::menu::y + 275 + variables::menu::group_box_2_y, 550, 230, render::fonts::watermark_font, "Extra", false); {
-			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 305, 125, render::fonts::watermark_font, "Chams Red Value", variables::visual_chams_red, 0.f, 255.f);
-			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 335, 125, render::fonts::watermark_font, "Chams Green Value", variables::visual_chams_green, 0.f, 255.f);
-			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 365, 125, render::fonts::watermark_font, "Chams Blue Value", variables::visual_chams_blue, 0.f, 255.f);
+			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 305, 125, render::fonts::watermark_font, "Chams [Textured] Red Value", variables::visual_chams_red, 0.f, 255.f);
+			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 335, 125, render::fonts::watermark_font, "Chams [Textured] Green Value", variables::visual_chams_green, 0.f, 255.f);
+			menu_framework::slider(variables::menu::x + 120, variables::menu::y + 365, 125, render::fonts::watermark_font, "Chams [Textured] Blue Value", variables::visual_chams_blue, 0.f, 255.f);
 		}
 		break;
 	}

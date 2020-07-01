@@ -8,6 +8,8 @@ hooks::create_move::fn create_move_original = nullptr;
 hooks::paint_traverse::fn paint_traverse_original = nullptr;
 hooks::scene_end::fn scene_end_original = nullptr;
 hooks::frame_stage::fn frame_stage_original = nullptr;
+
+
 bool hooks::initialize() {
 	auto create_move_target = reinterpret_cast<void*>(get_virtual(interfaces::clientmode, 24));
 	auto paint_traverse_target = reinterpret_cast<void*>(get_virtual(interfaces::panel, 41));
@@ -75,6 +77,7 @@ bool __fastcall hooks::create_move::hook(void* ecx, void* edx, int input_sample_
 
 	if (variables::aim_recoil) 
 		cmd->viewangles -= csgo::local_player->aim_punch_angle() * 2.f;
+		
 
 	prediction::start(cmd); {
 		aimbot::run_aimbot(cmd);
@@ -102,7 +105,7 @@ void __stdcall hooks::paint_traverse::hook(unsigned int panel, bool force_repain
 	case fnv::hash("MatSystemTopPanel"):
 		if (variables::watermark_enable) {
 			render::draw_filled_rect(10, 10, 80, 15, color::black(255));
-			render::draw_text_string(10, 10, render::fonts::watermark_font, "proxied.cc", false, color::blue(255));
+			render::draw_text_string(10, 10, render::fonts::watermark_font, "   proxied.cc", false, color::blue(255));
 		}
 		menu::toggle();
 		menu::render();
@@ -133,12 +136,12 @@ void __stdcall hooks::scene_end::hook()
 			continue;
 
 		static i_material* mat_test = nullptr;
-		static i_material* mat_glow = nullptr;
+		static i_material* mat_Glass = nullptr;
 		auto materialTextured = interfaces::material_system->find_material("debug/debugambientcube", TEXTURE_GROUP_MODEL, true, nullptr);
-		auto materialGlow = interfaces::material_system->find_material("dev/glow_armsrace", TEXTURE_GROUP_OTHER, true, nullptr);
+		auto materialGlass = interfaces::material_system->find_material("models/inventory_items/cologne_prediction/cologne_prediction_glass", TEXTURE_GROUP_MODEL, true, nullptr);
 		materialTextured->increment_reference_count(); // i forgot this and became gey
 		mat_test = materialTextured;
-		mat_glow = materialGlow;
+		mat_Glass = materialGlass;
 		float chams[4] = {variables::visual_chams_red / 255.f, variables::visual_chams_green / 255.f, variables::visual_chams_blue / 255.f, 255.f / 255.f};
 
 		if (variables::visual_chams && e->team() != p->team())
@@ -157,7 +160,7 @@ void __stdcall hooks::scene_end::hook()
 			e->draw_model(1, 255);
 		}
 
-		if (variables::visual_chamsGlow && e->team() != p->team())
+		if (variables::visual_chamsGlass && e->team() != p->team())
 		{
 			interfaces::render_view->modulate_color(chams);
 			interfaces::render_view->set_blend(0.9f);
@@ -169,7 +172,7 @@ void __stdcall hooks::scene_end::hook()
 				mat_test->set_material_var_flag(material_var_ignorez, false);
 			}
 
-			interfaces::model_render->override_material(mat_glow);
+			interfaces::model_render->override_material(mat_Glass);
 			e->draw_model(1, 255);
 		}
 
@@ -183,7 +186,7 @@ void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
 {
 	bool sv = false;
 	convar* sv_cheats = interfaces::console->get_convar("sv_cheats");
-	convar* sv_grenade_prediction = interfaces::console->get_convar("sv_grenade_trajectory");
+	convar* cl_grenadepreview = interfaces::console->get_convar("cl_grenadepreview");
 
 	if (frame_stage == FRAME_NET_UPDATE_END && interfaces::engine->is_in_game() && interfaces::engine->is_connected())
 	{
@@ -214,9 +217,10 @@ void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
 
 		// grenade prediction
 		if (variables::visual_grenade_prediction)
-			sv_grenade_prediction->set_value(1);
+			cl_grenadepreview->set_value(1);
 		else
-			sv_grenade_prediction->set_value(0);
+			cl_grenadepreview->set_value(0);
 	}
 	frame_stage_original(interfaces::client, frame_stage);
 }
+

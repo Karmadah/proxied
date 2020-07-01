@@ -20,7 +20,7 @@ namespace variables {
 	inline bool visual_spread_crosshair = false;
 	inline bool visual_name = false;
 	inline bool visual_chams = false;
-	inline bool visual_chamsGlow = false;
+	inline bool visual_chamsGlass = false;
 	inline bool visual_chamsEnable = false;
 	inline bool visual_chamsIgnoreZ = false;
 	inline bool visual_weapon = false;
