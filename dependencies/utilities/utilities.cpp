@@ -55,3 +55,11 @@ std::uint8_t* utilities::pattern_scan(const char* module_name, const char* signa
 
     return nullptr;
 }
+
+
+/* void SetClantag(const char* tag)
+{
+    static auto fnClantagChanged = (int(__fastcall*)(const char*, const char*))utilities::pattern_scan(GetModuleHandleW(L"engine.dll"), "53 56 57 8B DA 8B F9 FF 15");
+
+    fnClantagChanged(tag, tag);
+} */

@@ -42,16 +42,17 @@ void menu::render() {
 			menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 45, variables::menu::x + 375, render::fonts::watermark_font, "Enable", variables::visual_enable);
 			if (variables::visual_enable)
 			{
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 60, variables::menu::x + 375, render::fonts::watermark_font, "Force crosshair", variables::visual_force_crosshair);
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 75, variables::menu::x + 375, render::fonts::watermark_font, "Spread crosshair", variables::visual_spread_crosshair);
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 90, variables::menu::x + 375, render::fonts::watermark_font, "Box esp", variables::visual_esp_box);
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 105, variables::menu::x + 375, render::fonts::watermark_font, "Name esp", variables::visual_name);
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 120, variables::menu::x + 375, render::fonts::watermark_font, "Weapon esp", variables::visual_weapon);
-				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 135, variables::menu::x + 375, render::fonts::watermark_font, "Enable Chams", variables::visual_chamsEnable);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 60, variables::menu::x + 375, render::fonts::watermark_font, "Force Crosshair 1", variables::visual_force_crosshair);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 75, variables::menu::x + 375, render::fonts::watermark_font, "Force Crosshair 2", variables::visual_force_crosshair2);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 90, variables::menu::x + 375, render::fonts::watermark_font, "Spread Crosshair", variables::visual_spread_crosshair);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 105, variables::menu::x + 375, render::fonts::watermark_font, "Box Esp", variables::visual_esp_box);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 120, variables::menu::x + 375, render::fonts::watermark_font, "Name Esp", variables::visual_name);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 135, variables::menu::x + 375, render::fonts::watermark_font, "Weapon Esp", variables::visual_weapon);
+				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 150, variables::menu::x + 375, render::fonts::watermark_font, "Enable Chams", variables::visual_chamsEnable);
 				if (variables::visual_chamsEnable) {
-					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 150, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Textured]", variables::visual_chams);
-				if (variables::visual_chams)	menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Gloss Overlay]", variables::visual_chamsGlass);
-					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 180, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Through Walls]", variables::visual_chamsIgnoreZ);
+					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Textured]", variables::visual_chams);
+				if (variables::visual_chams)	menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 180, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Gloss Overlay]", variables::visual_chamsGlass);
+					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 195, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Through Walls]", variables::visual_chamsIgnoreZ);
 					
 				}
 			}

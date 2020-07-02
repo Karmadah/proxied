@@ -8,6 +8,7 @@ hooks::create_move::fn create_move_original = nullptr;
 hooks::paint_traverse::fn paint_traverse_original = nullptr;
 hooks::scene_end::fn scene_end_original = nullptr;
 hooks::frame_stage::fn frame_stage_original = nullptr;
+hooks::override_view::fn override_view_original = nullptr;
 
 
 bool hooks::initialize() {
@@ -15,6 +16,7 @@ bool hooks::initialize() {
 	auto paint_traverse_target = reinterpret_cast<void*>(get_virtual(interfaces::panel, 41));
 	auto scene_end_target = reinterpret_cast<void*>(get_virtual(interfaces::render_view, 9));
 	auto frame_stage_target = reinterpret_cast<void*>(get_virtual(interfaces::client, 37));
+	auto override_view_target = reinterpret_cast<void*>(get_virtual(interfaces::clientmode, 18));
 
 	if (MH_Initialize() != MH_OK) {
 		throw std::runtime_error("failed to initialize MH_Initialize.");
@@ -220,7 +222,17 @@ void __stdcall hooks::frame_stage::hook(client_frame_stage_t frame_stage)
 			cl_grenadepreview->set_value(1);
 		else
 			cl_grenadepreview->set_value(0);
+
+
 	}
 	frame_stage_original(interfaces::client, frame_stage);
 }
 
+void __fastcall hooks::override_view::hook(void* _this, int edx, interfaces::CViewSetup* vsView) {
+	
+	convar* weapon_debug_spread_show = interfaces::console->get_convar("weapon_debug_spread_show");
+
+
+
+	override_view_original(interfaces::clientmode);
+}

@@ -28,6 +28,7 @@ namespace variables {
 	inline bool visual_amb_light_green = false;
 	inline bool visual_amb_light_blue = false;
 	inline bool visual_grenade_prediction = false;
+	inline bool visual_force_crosshair2 = false;
 
 	//misc
 	inline bool bhop_enable = false;
