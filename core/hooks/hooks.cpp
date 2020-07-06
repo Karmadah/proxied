@@ -77,7 +77,14 @@ bool __fastcall hooks::create_move::hook(void* ecx, void* edx, int input_sample_
 
 	misc::movement::bunny_hop(cmd);
 	misc::movement::auto_strafe(cmd);
+<<<<<<< HEAD
 	misc::movement::anti_aimbot_run(cmd);
+=======
+
+	if (variables::aim_recoil) 
+		cmd->viewangles -= csgo::local_player->aim_punch_angle() * 2.f;
+		
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 
 	prediction::start(cmd); {
 		aimbot::run_aimbot(cmd);
@@ -107,7 +114,10 @@ void __stdcall hooks::paint_traverse::hook(unsigned int panel, bool force_repain
 	case fnv::hash("MatSystemTopPanel"):
 		if (variables::watermark_enable) {
 			render::draw_filled_rect(10, 10, 80, 15, color::black(255));
+<<<<<<< HEAD
 			render::draw_line(10, 10, 70, 10, color::blue());
+=======
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 			render::draw_text_string(10, 10, render::fonts::watermark_font, "   proxied.cc", false, color::blue(255));
 		}
 		menu::toggle();
@@ -140,6 +150,7 @@ void __stdcall hooks::scene_end::hook()
 
 		static i_material* mat_test = nullptr;
 		static i_material* mat_Glass = nullptr;
+<<<<<<< HEAD
 		static i_material* mat_glow = nullptr;
 		auto materialTextured = interfaces::material_system->find_material("debug/debugambientcube", TEXTURE_GROUP_MODEL, true, nullptr);
 		auto materialGlass = interfaces::material_system->find_material("models/inventory_items/cologne_prediction/cologne_prediction_glass", TEXTURE_GROUP_MODEL, true, nullptr);
@@ -148,6 +159,13 @@ void __stdcall hooks::scene_end::hook()
 		mat_test = materialTextured;
 		mat_Glass = materialGlass;
 		mat_glow = materialGlow;
+=======
+		auto materialTextured = interfaces::material_system->find_material("debug/debugambientcube", TEXTURE_GROUP_MODEL, true, nullptr);
+		auto materialGlass = interfaces::material_system->find_material("models/inventory_items/cologne_prediction/cologne_prediction_glass", TEXTURE_GROUP_MODEL, true, nullptr);
+		materialTextured->increment_reference_count(); // i forgot this and became gey
+		mat_test = materialTextured;
+		mat_Glass = materialGlass;
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 		float chams[4] = {variables::visual_chams_red / 255.f, variables::visual_chams_green / 255.f, variables::visual_chams_blue / 255.f, 255.f / 255.f};
 		float glow[4] = { 255 / 255.f, 0 / 255.f, 0 / 255.f, 255.f / 255.f };
 
@@ -180,6 +198,7 @@ void __stdcall hooks::scene_end::hook()
 			}
 
 			interfaces::model_render->override_material(mat_Glass);
+<<<<<<< HEAD
 			e->draw_model(1, 255);
 		}
 
@@ -196,6 +215,8 @@ void __stdcall hooks::scene_end::hook()
 			}
 
 			interfaces::model_render->override_material(mat_glow);
+=======
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 			e->draw_model(1, 255);
 		}
 

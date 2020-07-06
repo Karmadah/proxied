@@ -49,11 +49,20 @@ void menu::render() {
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 120, variables::menu::x + 375, render::fonts::watermark_font, "Name Esp", variables::visual_name);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 135, variables::menu::x + 375, render::fonts::watermark_font, "Weapon Esp", variables::visual_weapon);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 150, variables::menu::x + 375, render::fonts::watermark_font, "Enable Chams", variables::visual_chamsEnable);
+<<<<<<< HEAD
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Textured]", variables::visual_chams);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 180, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Gloss Overlay]", variables::visual_chamsGlass);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 195, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Through Walls]", variables::visual_chamsIgnoreZ);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 210, variables::menu::x + 375, render::fonts::watermark_font, "Glow", variables::visual_chams_glow);
 				menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 225, variables::menu::x + 375, render::fonts::watermark_font, "Player lines", variables::visual_player_lines);
+=======
+				if (variables::visual_chamsEnable) {
+					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 165, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Textured]", variables::visual_chams);
+				if (variables::visual_chams)	menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 180, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Gloss Overlay]", variables::visual_chamsGlass);
+					menu_framework::check_box(variables::menu::x + 120, variables::menu::y + 195, variables::menu::x + 375, render::fonts::watermark_font, "Chams [Through Walls]", variables::visual_chamsIgnoreZ);
+					
+				}
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 			}
 		}
 		menu_framework::group_box(variables::menu::x + 100 + variables::menu::group_box_2_x, variables::menu::y + 275 + variables::menu::group_box_2_y, 550, 230, render::fonts::watermark_font, "World", false); {

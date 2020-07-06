@@ -30,8 +30,11 @@ namespace variables {
 	inline bool visual_amb_light_blue = false;
 	inline bool visual_grenade_prediction = false;
 	inline bool visual_force_crosshair2 = false;
+<<<<<<< HEAD
 	inline bool visual_chams_glow = false;
 	inline bool visual_player_lines = false;
+=======
+>>>>>>> 1ffc2dd46c65c3ded6a7da968e333d947b1e4882
 
 	//misc
 	inline bool bhop_enable = false;
