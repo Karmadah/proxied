@@ -1,4 +1,5 @@
 #pragma once
+#include "../../dependencies/interfaces/interfaces.hpp"
 
 namespace hooks {
 	bool initialize();
@@ -24,5 +25,10 @@ namespace hooks {
 	namespace frame_stage {
 		using fn = void(__thiscall*)(void*, client_frame_stage_t);
 		void __stdcall hook(client_frame_stage_t frame_stage);
+	}
+
+	namespace override_view {
+		using fn = void(__fastcall*)(void*);
+		void __fastcall hook(void* _this, int edx, interfaces::CViewSetup* vsView);
 	}
 }

@@ -74,6 +74,9 @@ void visuals::visuals_subfunctions::esp(player_t* ent)
 	if (variables::visual_skeleton) {
 		//later
 	}
+	if (variables::visual_player_lines) {
+		visuals::visuals_subfunctions::entity_lines(b_box.x + (b_box.w / 2), b_box.y + (b_box.h / 2));
+	}
 }
 
 void visuals::visuals_subfunctions::force_crosshair()
@@ -94,6 +97,15 @@ void visuals::visuals_subfunctions::innaccuracy_crosshair()
 	y = y / 2;
 	if(csgo::local_player->is_moving())
 		render::draw_circle(x, y, 50, 100, color::red(255));
+}
+
+void visuals::visuals_subfunctions::entity_lines(int ent_x, int ent_y)
+{
+	int x, y;
+	interfaces::engine->get_screen_size(x, y);
+	x = x / 2;
+	y = y / 2;
+	render::draw_line(x, y, ent_x, ent_y, color::red(255));
 }
 
 bool visuals::get_playerbox(entity_t* ent, box& in) {

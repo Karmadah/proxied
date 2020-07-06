@@ -39,4 +39,5 @@
 
 namespace csgo {
 	extern player_t* local_player;
+	extern bool sending_packet;
 }

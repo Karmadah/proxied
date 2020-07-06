@@ -11,6 +11,7 @@ namespace variables {
 	inline float aim_health_hitbox_override = 0.f;
 	inline float aim_max_misses = 0.f;
 	inline float aim_hitchance = 0.f;
+	inline bool anti_aim_enable = false;
 
 	//visual
 	inline bool visual_enable = false;
@@ -20,7 +21,7 @@ namespace variables {
 	inline bool visual_spread_crosshair = false;
 	inline bool visual_name = false;
 	inline bool visual_chams = false;
-	inline bool visual_chamsGlow = false;
+	inline bool visual_chamsGlass = false;
 	inline bool visual_chamsEnable = false;
 	inline bool visual_chamsIgnoreZ = false;
 	inline bool visual_weapon = false;
@@ -28,6 +29,9 @@ namespace variables {
 	inline bool visual_amb_light_green = false;
 	inline bool visual_amb_light_blue = false;
 	inline bool visual_grenade_prediction = false;
+	inline bool visual_force_crosshair2 = false;
+	inline bool visual_chams_glow = false;
+	inline bool visual_player_lines = false;
 
 	//misc
 	inline bool bhop_enable = false;

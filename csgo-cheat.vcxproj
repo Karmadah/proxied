@@ -88,6 +88,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\features\aimbot\aimbot.cpp" />
+    <ClCompile Include="core\features\aimbot\anti_aimbot.cpp" />
     <ClCompile Include="core\features\misc\engine_prediction.cpp" />
     <ClCompile Include="core\features\misc\misc.cpp" />
     <ClCompile Include="core\features\visual\visuals.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="source-sdk\classes\trace.hpp" />
     <ClInclude Include="source-sdk\classes\view_setup.h" />
     <ClInclude Include="source-sdk\math\utl_vector.hpp" />
+    <ClInclude Include="source-sdk\math\Vector.hpp" />
     <ClInclude Include="source-sdk\math\vector2d.hpp" />
     <ClInclude Include="source-sdk\math\vector3d.hpp" />
     <ClInclude Include="source-sdk\math\view_matrix.hpp" />

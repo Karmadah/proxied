@@ -6,6 +6,7 @@ namespace misc {
 	namespace movement {
 		void bunny_hop(c_usercmd* cmd);
 		void auto_strafe(c_usercmd* cmd);
+		void anti_aimbot_run(c_usercmd* cmd);
 	};
 	float NormalizeYaw(float yaw);
 }
@@ -35,5 +36,6 @@ namespace visuals {
 		void esp(player_t* ent);
 		void force_crosshair();
 		void innaccuracy_crosshair();
+		void entity_lines(int ent_x, int ent_y);
 	};
 };
